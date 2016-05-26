@@ -1,0 +1,21 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th class="text-center" width="30%">User</th>
+			<th class="text-center" width="30%">Problem</th>
+			<th class="text-center">Last time</th>
+			<th class="text-center">Point</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @submissions.reverse.each do |s| %>
+		<tr>
+			<td class="text-center"><%= link_to User.find(s.user_id).username, :controller => 'user',
+				:action => 'show', :id => s.user_id %></td>
+			<td class="text-center"><%= link_to Problem.find(s.problem_id).title, Problem.find(s.problem_id) %></td>
+			<td class="text-center"><%= s.created_at.to_s[0..-7] %></td>
+			<td class="text-center"><%= Problem.find(s.problem_id).point %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

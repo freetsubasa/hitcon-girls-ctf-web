@@ -1,0 +1,12 @@
+<% @posts.reverse.each do |post| %>
+<div class="page-header">
+	<% if is_admin? %>
+	<h2><%= link_to(markdown(post.title), edit_post_path(post)) %></h2>
+	<% else %>
+	<h2><%= markdown(post.title) %></h2>
+	<% end %>
+</div>
+<div class="well">
+	<p><font size="3"><%= markdown(post.text) %></font></p>
+</div>
+<% end %>

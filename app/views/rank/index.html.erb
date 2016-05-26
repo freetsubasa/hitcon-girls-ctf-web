@@ -1,0 +1,23 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th class="text-center">Rank</th>
+			<th class="text-center" width="50%">User</th>
+			<th class="text-center">Last time</th>
+			<th class="text-center">Point</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @users.each_with_index do |tmp,i| %>
+		<% user = tmp.keys[0] %>
+		<% if Submission.where(:user => user).last != nil %>
+		<tr>
+			<td class="text-center"><%= i+1 %></td>
+			<td class="text-center"><%= link_to user.username, :controller => 'user', :action => 'show', :id => user.id %></td>
+			<td class="text-center"><%= Submission.where(:user => user).last.created_at.to_s[0..-7] %></td>
+			<td class="text-center"><%= user.point %></td>
+		</tr>
+		<% end %>
+	<% end %>
+	</tbody>
+</table>

@@ -1,0 +1,28 @@
+<div class="ui teal attached huge stackable inverted menu" style="padding-top:10px;font-size:17px;">
+  <div class="ui container">
+
+    <a class="item" href="/"> HITCON GIRLS </a>
+    <a><%= link_to("Problems", problems_path, class: "item") %></a>
+    <a><%= link_to("Submissions", submissions_path, class: "item") %></a>
+    <a><%= link_to("Ranking", rank_path, class: "item") %></a>
+
+    <div class="right menu">
+      <% if !current_user %>
+        <a><%= link_to("Login", new_user_session_path, class: "item") %></a>
+        <a><%= link_to("Register", new_user_registration_path, class: "item") %></a>
+      <% else %>
+      <% if is_admin? %>
+      	<div class="ui simple dropdown item">
+          Admin <i class="dropdown icon"></i>
+          <div class="menu">
+            <a><%= link_to("Add post", new_post_path, class: "item") %></a>
+            <a><%= link_to("New problem", new_problem_path, class: "item") %></a>
+          </div>
+        </div>
+        <% end %>
+        <a> <%= link_to(current_user.username, users_path, class: "item") %> </a>
+        <a> <%= link_to("Logout", destroy_user_session_path, :method => :delete, class: "item") %> </a>
+      <% end %>
+    </div>
+  </div>
+</div>

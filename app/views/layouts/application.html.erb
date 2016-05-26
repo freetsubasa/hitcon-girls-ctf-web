@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HITCON GIRLS</title>
+	<link rel="stylesheet" type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
+	<%= stylesheet_link_tag		'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="ui centered grid">
+	<%= render "shared/nav" %>
+	<div class="thirteen wide column">
+		<% if notice %>
+			<div class="ui positive message"><%= notice %></div>
+		<% end %>
+		<% if alert %>
+			<div class="ui error message"><%= alert %></div>
+		<% end %>
+		<%= yield %>
+	</div>
+</div>
+<hr>
+	<%= render "shared/footer" %>
+
+</body>
+</html>
