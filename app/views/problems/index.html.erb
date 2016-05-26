@@ -1,26 +1,20 @@
-<div class="panel panel-warning">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<h1>Rules</h1>
-		</div>
-	</div>
-	<div class="panel-body">
-		<font size="4">
-			<%= markdown(@rule) %>
-		</font>
-	</div>
+<div class="ui top attached purple message">
+	<h1>Rules</h1>
+</div>
+<div class="ui bottom attached segment">
+	<font size="4">
+		<%= markdown(@rule) %>
+	</font>
 </div>
 <% @categories.each do |c| %>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<h1><%= c.name %></h1>
-		</div>
-	</div>
-	<table class="table table-striped">
+<div class="ui top attached olive message">
+	<h1><%= c.name %></h1>
+</div>
+<div class="ui bottom attached segment">
+	<table class="ui single line selectable table">
 		<thead>
 			<tr>
-				<th>#</th>
+				<th>solve ? </th>
 				<th> </th>
 				<th>Title</th>
 				<th>Point</th>
@@ -30,8 +24,8 @@
 		<tbody>
 		<% Problem.where(category: c.id - 1).each_with_index do |p,i| %>
 			<tr>
+				<td width="10%"><% if Submission.find_by(user_id: current_user.id, problem_id: p.id) != nil %><div class="ui green big ribbon label">solved</div><% else %> <% end %></td>
 				<td width="10%"><%= i+1 %></td>
-				<td width="10%"><% if Submission.find_by(user_id: current_user.id, problem_id: p.id) != nil %>✓<% else %> <% end %></td>
 				<td><%= link_to p.title,p %></td>
 				<td width="15%"><%= p.point %></td>
 				<td width="15%"><%= Submission.where(problem_id: p.id).count %></td>
